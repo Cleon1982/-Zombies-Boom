@@ -14,7 +14,11 @@ export class HailGenerator extends BaseSkill {
         const enemies = entityManager.getEntitiesByType(EntityType.ENEMY) as Enemy[];
         if (enemies.length === 0) return;
 
-        process.stdout.write(`[HailGenerator] Dropping ${this.hits} hails on random enemies\n`);
+        if (typeof (window as any).gameRenderer !== 'undefined') {
+            // Simplified: Draw a quick flash or similar for hail
+        }
+
+        console.log(`[HailGenerator] Dropping ${this.hits} hails on random enemies`);
         for (let i = 0; i < this.hits; i++) {
             const target = enemies[Math.floor(Math.random() * enemies.length)];
             target.takeDamage(this.damagePerHit);
@@ -43,7 +47,7 @@ export class DryIceBomb extends BaseSkill {
         const enemies = entityManager.getEntitiesByType(EntityType.ENEMY) as Enemy[];
         if (enemies.length === 0) return;
 
-        process.stdout.write(`[DryIceBomb] Freezing enemies for ${this.freezeDuration}s\n`);
+        console.log(`[DryIceBomb] Freezing enemies for ${this.freezeDuration}s`);
         for (const enemy of enemies) {
              enemy.takeDamage(5);
              enemy.freeze(this.freezeDuration);
@@ -72,7 +76,11 @@ export class HighEnergyRay extends BaseSkill {
         const enemies = entityManager.getEntitiesByType(EntityType.ENEMY);
         if (enemies.length === 0) return;
 
-        process.stdout.write(`[HighEnergyRay] Firing beam down the center\n`);
+        if (typeof (window as any).gameRenderer !== 'undefined') {
+            (window as any).gameRenderer.drawEffect('high_energy_ray', { width: this.width });
+        }
+
+        console.log(`[HighEnergyRay] Firing beam down the center`);
         const centerX = 400;
         for (const enemy of enemies) {
             if (Math.abs(enemy.position.x - centerX) < this.width / 2) {

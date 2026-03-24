@@ -5,9 +5,15 @@ export class Player extends Entity {
     currentCooldown: number = 0;
     damage: number = 10;
     range: number = 500;
+    goldCollected: number = 0;
 
     constructor(id: string, position: Vector2) {
         super(id, EntityType.PLAYER, position, 100);
+    }
+
+    applyBonus(bonus: { playerDamageBonus: number; playerRangeBonus: number }) {
+        this.damage *= (1 + bonus.playerDamageBonus);
+        this.range += bonus.playerRangeBonus;
     }
 
     update(deltaTime: number) {

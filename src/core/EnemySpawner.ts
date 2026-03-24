@@ -49,7 +49,11 @@ export class EnemySpawner {
         this.wave++;
         this.enemiesToSpawn = 5 + this.wave * 2;
         this.spawnRate = Math.max(0.2, 1.0 - this.wave * 0.05);
-        process.stdout.write(`Starting Wave ${this.wave}: Spawning ${this.enemiesToSpawn} enemies\n`);
+        if (typeof process !== 'undefined' && process.stdout) {
+            process.stdout.write(`Starting Wave ${this.wave}: Spawning ${this.enemiesToSpawn} enemies\n`);
+        } else {
+            console.log(`Starting Wave ${this.wave}: Spawning ${this.enemiesToSpawn} enemies`);
+        }
     }
 
     update(deltaTime: number) {

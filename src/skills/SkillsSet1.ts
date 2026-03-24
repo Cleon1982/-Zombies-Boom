@@ -16,6 +16,9 @@ export class ThermobaricBomb extends BaseSkill {
         const target = enemies[Math.floor(Math.random() * enemies.length)];
         const center = target.position;
 
+        if (typeof (window as any).gameRenderer !== 'undefined') {
+            (window as any).gameRenderer.drawEffect('thermobaric_bomb', { x: center.x, y: center.y, radius: this.radius });
+        }
         console.log(`[ThermobaricBomb] Activating at (${center.x.toFixed(1)}, ${center.y.toFixed(1)})`);
 
         for (const enemy of enemies) {
@@ -52,6 +55,10 @@ export class ElectromagneticRing extends BaseSkill {
     activate(entityManager: EntityManager) {
         const enemies = entityManager.getEntitiesByType(EntityType.ENEMY);
         const center: Vector2 = { x: 400, y: 0 };
+
+        if (typeof (window as any).gameRenderer !== 'undefined') {
+            (window as any).gameRenderer.drawEffect('electromagnetic_ring', { radius: this.radius });
+        }
 
         for (const enemy of enemies) {
             const dist = this.getDistance(center, enemy.position);

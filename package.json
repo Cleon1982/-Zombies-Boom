@@ -1,0 +1,14 @@
+{
+  "name": "zombie-shooter-demo",
+  "version": "1.0.0",
+  "description": "A Roguelike + Tower Defense game demo inspired by 《向僵尸开炮》",
+  "main": "index.js",
+  "scripts": {
+    "test-sim": "ts-node src/test_game.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.0",
+    "ts-node": "^8.0.0",
+    "typescript": "^3.7.0"
+  }
+}

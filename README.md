@@ -2,26 +2,12 @@
 
 This project is a core combat and system demo for a Roguelike + Tower Defense game.
 
-## Directory Structure
-
-- `src/core/`: Core game engine (Entity management, Player controller, Enemy spawner, Skill manager)
-- `src/skills/`: Skill implementations and base classes
-- `src/systems/`: Persistence (`localStorage`) and external system interfaces (Gems/Equipment)
-- `src/ui/`: UI controllers for the Main City, Combat HUD, and Upgrade Selection
-- `index.html`: Main game entry point and UI layout
-
 ## Features Implemented
 
 1.  **Main City UI**: View gold reserves and highest wave reached.
 2.  **Core Combat**: Auto-aiming player turret, wave-based enemy spawning with health bars.
 3.  **Skill System**: 5 unique skills with upgrade logic and "3-choose-1" selection.
-    - Thermobaric Bomb (温压弹)
-    - Electromagnetic Ring (电磁圈)
-    - Hail Generator (冰雹发生器)
-    - Dry Ice Bomb (干冰弹)
-    - High-energy Ray (高能射线)
-4.  **Progression & Persistence**: `localStorage` records gold and wave progress. Gem/Equipment interfaces define how external stats influence combat.
-5.  **Performance Guide**: `PERFORMANCE.md` detailing how to handle high unit counts and rendering optimizations.
+4.  **Progression & Persistence**: `localStorage` records gold and wave progress.
 
 ## Getting Started
 
@@ -37,3 +23,17 @@ This project is a core combat and system demo for a Roguelike + Tower Defense ga
 
 3. **Run the game**:
    Open `index.html` in any modern web browser.
+
+## Troubleshooting
+
+### `EEXIST` error on Windows during `npm install`
+If you encounter an error like `error code EEXIST` or `Refusing to delete ... tsc`, it is likely due to a conflict with existing global or local node_modules. To fix:
+1. Delete the `node_modules` folder and `package-lock.json` file.
+2. Run `npm install` again.
+
+### Game won't start (Missing `dist/bundle.js`)
+If you see a `404` error for `/dist/bundle.js` in the browser console, ensure you have run the build command:
+```bash
+npm run build
+```
+This command compiles the TypeScript source code and bundles it for the browser.

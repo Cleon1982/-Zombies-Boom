@@ -4,14 +4,14 @@
   "description": "A Roguelike + Tower Defense game demo inspired by 《向僵尸开炮》",
   "main": "index.js",
   "scripts": {
-    "build": "browserify src/index.ts -p [ tsify --noImplicitAny ] > dist/bundle.js",
+    "build": "mkdir dist && browserify src/index.ts -p [ tsify --noImplicitAny ] -o dist/bundle.js",
     "test-sim": "ts-node src/test_game.ts"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "browserify": "^17.0.0",
-    "ts-node": "^10.9.1",
-    "tsify": "^5.0.0",
-    "typescript": "^5.0.0"
+    "@types/node": "^12.0.0",
+    "browserify": "^16.5.0",
+    "ts-node": "^8.5.0",
+    "tsify": "^4.0.0",
+    "typescript": "^3.7.0"
   }
 }
